@@ -12,6 +12,7 @@
   --coral:#FF6B6B; --orange:#FF9F43; --sun:#FFC93C; --violet:#7C5CFF; --sky:#38BDF8; --mint:#12B8A6; --pink:#FF7EB6;
   --g-pre:linear-gradient(135deg,#FF6B6B 0%,#FF9F43 55%,#FFC93C 100%);
   --g-post:linear-gradient(135deg,#7C5CFF 0%,#38BDF8 60%,#12B8A6 100%);
+  --g-rep:linear-gradient(135deg,#FF4D8D 0%,#FF7EB6 45%,#FFB347 100%);
   --g-rain:linear-gradient(90deg,#FF6B6B,#FF9F43,#FFC93C,#12B8A6,#38BDF8,#7C5CFF,#FF7EB6);
   --shadow:0 18px 50px -18px rgba(90,50,120,.28),0 4px 14px -6px rgba(90,50,120,.12);
   --r:24px;
@@ -63,6 +64,7 @@ img{max-width:100%;display:block}
 .btn[disabled]{opacity:.5;pointer-events:none}
 .btn-pre{background:var(--g-pre);color:#fff;box-shadow:0 12px 26px -12px #FF6B6B}
 .btn-post{background:var(--g-post);color:#fff;box-shadow:0 12px 26px -12px #7C5CFF}
+.btn-rep{background:var(--g-rep);color:#fff;box-shadow:0 12px 26px -12px #FF4D8D}
 .btn-ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
 .btn-ghost:hover{border-color:#e2d4ea}
 .btn-dark{background:var(--ink);color:#fff}
@@ -134,6 +136,15 @@ img{max-width:100%;display:block}
 .stat{padding:12px;border-radius:16px;background:#FBF8FF;border:1px solid var(--line);text-align:center}
 .stat b{display:block;font-size:24px;font-weight:900;line-height:1.1}
 .stat span{font-size:12px;color:var(--sub);font-weight:700}
+.tcover.repair{background-image:var(--g-rep)}
+.repcard{margin-top:22px;display:grid;grid-template-columns:300px 1fr}
+.repcard .tcover{height:auto;min-height:200px}
+.repmeter{display:flex;gap:8px;flex-wrap:wrap}
+.repmeter i{width:38px;height:38px;border-radius:12px;background:#F4EEF8;display:grid;place-items:center;font-style:normal;font-weight:900;color:#C4B8D6;font-size:15px}
+.repmeter i.on{background:var(--g-rep);color:#fff;box-shadow:0 6px 14px -8px #FF4D8D}
+.passbadge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-weight:900;font-size:13px}
+.passbadge.ok{background:#DDF8F1;color:#0C8A7A}.passbadge.no{background:#FFE3EC;color:#D2335F}
+@media (max-width:860px){.repcard{grid-template-columns:1fr}}
 .closed{padding:12px;border-radius:14px;background:#F4F2F7;color:var(--sub);text-align:center;font-weight:800}
 .compare{margin-top:22px;padding:22px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
 .gain{width:118px;height:118px;border-radius:50%;display:grid;place-items:center;text-align:center;background:conic-gradient(#12B8A6 var(--p,0%),#EDE7F5 0);position:relative}
@@ -165,7 +176,7 @@ img{max-width:100%;display:block}
 .qtop{position:sticky;top:0;z-index:5;padding:12px 0 10px;background:linear-gradient(180deg,var(--bg) 70%,rgba(255,248,241,0))}
 .qtop-in{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .mode-pill{padding:8px 14px;border-radius:999px;color:#fff;font-weight:900;font-size:14px}
-.mode-pill.pre{background:var(--g-pre)}.mode-pill.post{background:var(--g-post)}
+.mode-pill.pre{background:var(--g-pre)}.mode-pill.post{background:var(--g-post)}.mode-pill.repair{background:var(--g-rep)}
 .qprog{height:12px;border-radius:999px;background:#EFE8F6;overflow:hidden;margin-top:10px}
 .qprog i{display:block;height:100%;background:var(--g-rain);background-size:200% 100%;animation:shine 6s linear infinite;transition:width .4s}
 .qcard{padding:clamp(20px,4vw,40px);margin-top:10px;position:relative;overflow:hidden}
@@ -188,6 +199,8 @@ img{max-width:100%;display:block}
 .opt.sel .k{background:var(--g-pre);color:#fff}
 body.m-post .opt.sel{background:linear-gradient(#fff,#fff) padding-box,var(--g-post) border-box;box-shadow:0 12px 24px -14px #7C5CFF}
 body.m-post .opt.sel .k{background:var(--g-post)}
+body.m-repair .opt.sel{background:linear-gradient(#fff,#fff) padding-box,var(--g-rep) border-box;box-shadow:0 12px 24px -14px #FF4D8D}
+body.m-repair .opt.sel .k{background:var(--g-rep)}
 .qnav{display:flex;gap:10px;margin-top:22px;align-items:center;flex-wrap:wrap}
 .qmap{display:grid;grid-template-columns:repeat(15,1fr);gap:8px;margin-top:16px;padding:16px}
 .qdot{height:42px;border-radius:12px;background:#F4F0F9;font-weight:900;font-size:14px;color:var(--sub);border:2px solid transparent}
@@ -272,7 +285,7 @@ body.m-post .opt.sel .k{background:var(--g-post)}
 
 /* ===== admin ===== */
 .adm-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:16px}
 .kpi{padding:16px;border-radius:20px;background:#fff;box-shadow:var(--shadow)}
 .kpi b{display:block;font-size:28px;font-weight:900;line-height:1.1}
 .kpi span{font-size:13px;color:var(--sub);font-weight:800}
@@ -282,7 +295,7 @@ body.m-post .opt.sel .k{background:var(--g-post)}
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
 .toolbar .input,.toolbar .select{width:auto;padding:10px 14px;font-size:15px}
 .tbl-wrap{overflow:auto;border-radius:20px;background:#fff;box-shadow:var(--shadow)}
-table{width:100%;border-collapse:collapse;font-size:14px;min-width:980px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:1120px}
 th{position:sticky;top:0;background:#FBF7FF;text-align:left;padding:12px 10px;font-weight:900;color:var(--sub);font-size:13px;border-bottom:1px solid var(--line);z-index:1}
 td{padding:10px;border-bottom:1px solid #F6F0F8;vertical-align:middle}
 tr:hover td{background:#FFFBF7}
@@ -427,8 +440,17 @@ const WRITTEN = [
 ];
 const ALL = QUESTIONS.concat(WRITTEN.map(w => Object.assign({w:true}, w)));
 const MC_IDS = QUESTIONS.map((_, i) => i);
-const W_IDS = mode => WRITTEN.map((w, i) => (mode === 'post' || w.pre) ? QUESTIONS.length + i : -1).filter(i => i >= 0);
+const W_IDS = mode => WRITTEN.map((w, i) => (mode !== 'pre' || w.pre) ? QUESTIONS.length + i : -1).filter(i => i >= 0);
 const TOTAL = mode => MC_IDS.length + W_IDS(mode).length;
+const MODE_TH = {pre:'PRETEST', post:'POST-TEST', repair:'สอบซ่อม'};
+const MODE_BTN = {pre:'btn-pre', post:'btn-post', repair:'btn-rep'};
+/* เกณฑ์ผ่าน / สอบซ่อม (ครูตั้งค่าได้ในหน้าครู) — ใช้คะแนน Post-test สูงสุด */
+const passScore = (mode) => mode === 'pre' ? (Number(S.settings.passPre) || 21) : (Number(S.settings.passPost) || 23);
+function repairNeed(st){
+  st = st || {};
+  if (st.postBest == null || st.postBest >= passScore('post')) return 0;
+  return passScore('post') - st.postBest + (Number(S.settings.repairExtra) >= 0 && S.settings.repairExtra !== '' && S.settings.repairExtra != null ? Number(S.settings.repairExtra) : 1);
+}
 const KIND_TH = {pick:'เลือกคำ', fill:'พิมพ์เติมคำ', write:'เขียนตอบ', sort:'ลากคำลงช่อง', order:'เรียงประโยค'};
 
 function normAns(x){
@@ -555,17 +577,17 @@ const Demo = (() => {
     ['6/3',1,'ธนพร วงศ์ใหญ่'],['6/3',2,'นภัสสร ทองคำ'],['6/3',3,'ปิยะพงษ์ ศักดิ์ดี']
   ].map(([cls, no, name]) => ({cls, no:String(no), name, key:cls + '|' + no + '|' + name}));
   const DEF = {pin:OFFLINE_PIN, faceCode:OFFLINE_FACECODE, faceScan:'TRUE', antiCheat:'TRUE', deviceOneUser:'FALSE', preOpen:'TRUE', postOpen:'TRUE',
-    showReviewPre:'FALSE', showReviewPost:'TRUE', announce:'', heroImg:'', logoImg:'', preImg:'', postImg:'', bgImg:''};
+    showReviewPre:'FALSE', showReviewPost:'TRUE', passPre:'21', passPost:'23', repairOpen:'TRUE', repairExtra:'1', repairMinScore:'0', announce:'', heroImg:'', logoImg:'', preImg:'', postImg:'', bgImg:''};
   const NOTES = {pin:'รหัสเข้าหน้าครู', faceCode:'รหัสแทนการสแกนหน้า', faceScan:'TRUE = ต้องสแกนหน้าก่อนสอบ', antiCheat:'TRUE = นับการสลับแท็บ',
-    deviceOneUser:'TRUE = 1 เครื่องใช้ได้แค่ 1 คน', preOpen:'เปิด Pretest', postOpen:'เปิด Post-test', showReviewPre:'แสดงเฉลยหลัง Pretest', showReviewPost:'แสดงเฉลยหลัง Post-test',
+    deviceOneUser:'TRUE = 1 เครื่องใช้ได้แค่ 1 คน', preOpen:'เปิด Pretest', postOpen:'เปิด Post-test', showReviewPre:'แสดงเฉลยหลัง Pretest', showReviewPost:'แสดงเฉลยหลัง Post-test', passPre:'เกณฑ์ผ่าน Pretest (เต็ม 35)', passPost:'เกณฑ์ผ่าน Post-test (เต็ม 40)', repairOpen:'เปิดการ์ดสอบซ่อม', repairExtra:'จำนวนครั้งซ่อม = เกณฑ์ − คะแนน + ค่านี้', repairMinScore:'รอบซ่อมนับเมื่อได้คะแนน ≥ ค่านี้',
     announce:'ข้อความประกาศ', heroImg:'รูปแบนเนอร์ (1600×600)', logoImg:'โลโก้ (256×256)', preImg:'การ์ด Pretest (800×500)', postImg:'การ์ด Post-test (800×500)', bgImg:'พื้นหลัง (1920×1080)'};
   const K = 'ppc_demo_db_v1';
   const load = () => { const d = store.get(K, null) || {}; d.status = d.status || {}; d.results = d.results || []; d.msgs = d.msgs || []; d.pres = d.pres || {}; d.settings = Object.assign({}, DEF, d.settings || {}); d.setver = d.setver || '0'; return d; };
   const save = d => store.set(K, d);
   const pub = s => { const o = Object.assign({}, s); delete o.pin; delete o.faceCode; return o; };
-  const blank = r => ({key:r.key, name:r.name, cls:r.cls, no:r.no, deviceId:'', faceImg:'', faceMethod:'', violations:0, preBest:null, preLast:null, preAttempts:0, postBest:null, postLast:null, postAttempts:0, lastSubmit:''});
+  const blank = r => ({key:r.key, name:r.name, cls:r.cls, no:r.no, deviceId:'', faceImg:'', faceMethod:'', violations:0, preBest:null, preLast:null, preAttempts:0, postBest:null, postLast:null, postAttempts:0, repairCount:0, repairBest:null, repairLast:null, repairTries:0, lastSubmit:''});
   const view = s => ({key:s.key, name:s.name, cls:s.cls, no:s.no, deviceBound:!!s.deviceId, hasFace:!!s.faceImg, faceMethod:s.faceMethod, violations:s.violations,
-    preBest:s.preBest, preLast:s.preLast, preAttempts:s.preAttempts, postBest:s.postBest, postLast:s.postLast, postAttempts:s.postAttempts, lastSubmit:s.lastSubmit});
+    preBest:s.preBest, preLast:s.preLast, preAttempts:s.preAttempts, postBest:s.postBest, postLast:s.postLast, postAttempts:s.postAttempts, repairCount:s.repairCount || 0, repairBest:s.repairBest == null ? null : s.repairBest, repairLast:s.repairLast == null ? null : s.repairLast, lastSubmit:s.lastSubmit});
   let lastId = 0;
   const nid = () => { let id = Date.now(); if (id <= lastId) id = lastId + 1; lastId = id; return id; };
   const ts = () => new Date().toLocaleString('sv-SE').replace('T', ' ');
@@ -599,8 +621,15 @@ const Demo = (() => {
       if (a === 'face'){ const s = d.status[b.key]; s.faceImg = b.img || ''; s.faceMethod = b.method || ''; return {ok:true}; }
       if (a === 'violation'){ d.status[b.key].violations++; return {ok:true}; }
       if (a === 'submit'){
-        const s = d.status[b.key], m = b.mode === 'post' ? 'post' : 'pre';
+        const s = d.status[b.key], m = ['pre','post','repair'].includes(b.mode) ? b.mode : 'pre';
         if (b.attemptId && d.results.some(x => x.attemptId === b.attemptId)) return {ok:true, dup:true, status:view(s)};
+        if (m === 'repair'){
+          const counted = Number(b.score) >= Number(d.settings.repairMinScore || 0);
+          if (counted) s.repairCount = (s.repairCount || 0) + 1;
+          s.repairLast = b.score; s.repairBest = Math.max(s.repairBest == null ? -1 : s.repairBest, b.score); s.lastSubmit = ts();
+          d.results.push({ts:ts(), key:b.key, mode:m, score:b.score, attemptId:b.attemptId});
+          return {ok:true, attempt:s.repairCount, counted, status:view(s)};
+        }
         s[m + 'Attempts']++; s[m + 'Last'] = b.score; s[m + 'Best'] = Math.max(s[m + 'Best'] == null ? -1 : s[m + 'Best'], b.score); s.lastSubmit = ts();
         d.results.push({ts:ts(), key:b.key, mode:m, score:b.score, attemptId:b.attemptId});
         return {ok:true, attempt:s[m + 'Attempts'], status:view(s)};
@@ -626,8 +655,9 @@ const Demo = (() => {
         Object.values(d.status).forEach(s => {
           if (b.key && s.key !== b.key) return;
           if (!b.key && b.cls && b.cls !== 'all' && s.cls !== b.cls) return;
-          if (b.scope !== 'post'){ s.preBest = null; s.preLast = null; s.preAttempts = 0; }
-          if (b.scope !== 'pre'){ s.postBest = null; s.postLast = null; s.postAttempts = 0; }
+          if (b.scope === 'pre' || b.scope === 'all'){ s.preBest = null; s.preLast = null; s.preAttempts = 0; }
+          if (b.scope === 'post' || b.scope === 'all'){ s.postBest = null; s.postLast = null; s.postAttempts = 0; }
+          if (b.scope === 'repair' || b.scope === 'all'){ s.repairCount = 0; s.repairBest = null; s.repairLast = null; }
           if (b.scope === 'all') s.violations = 0;
           n++;
         });
@@ -858,8 +888,35 @@ function testCard(mode){
         <div class="stat"><b>${last == null ? '–' : last}</b><span>ครั้งล่าสุด</span></div>
         <div class="stat"><b>${att}</b><span>ทำไปแล้ว (ครั้ง)</span></div>
       </div>
+      <div class="muted" style="font-size:13px;font-weight:800">🎯 เกณฑ์ผ่าน ${passScore(mode)} / ${TOTAL(mode)} คะแนน</div>
+      ${best != null ? `<div>${best >= passScore(mode) ? `<span class="passbadge ok">✅ ผ่านเกณฑ์แล้ว</span>` : `<span class="passbadge no">❗ ยังไม่ผ่านเกณฑ์${isPre ? '' : ' → ต้องสอบซ่อม'}</span>`}</div>` : ''}
       ${open ? `<button class="btn ${isPre ? 'btn-pre' : 'btn-post'}" data-start="${mode}" style="width:100%">${att ? '🔁 ทำอีกครั้ง' : '▶ เริ่มทำ ' + (isPre ? 'Pretest' : 'Post-test')}</button>`
              : `<div class="closed">🔒 ครูยังไม่เปิดให้ทำ${isPre ? ' Pretest' : ' Post-test'}</div>`}
+    </div>
+  </div>`;
+}
+function repairCard(){
+  const st = S.status || {}, need = repairNeed(st);
+  if (!need) return '';
+  const done = st.repairCount || 0, ok = done >= need, open = isOn(S.settings.repairOpen);
+  const minS = Number(S.settings.repairMinScore) || 0;
+  const dots = Array.from({length:need}, (_, i) => `<i class="${i < done ? 'on' : ''}">${i < done ? '✓' : i + 1}</i>`).join('');
+  return `<div class="tcard repcard">
+    <div class="tcover repair">
+      <span class="tag">🛠️ สอบซ่อม</span>
+      <svg class="deco" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="6"/><path d="M30 52 l14 14 l26 -30" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><div class="big">สอบซ่อม</div><div style="font-weight:800;opacity:.95">${TOTAL('repair')} ข้อ · ชุดเดียวกับ Post-test</div></div>
+    </div>
+    <div class="tbody">
+      <div style="font-weight:900;font-size:18px">${ok ? '🎉 สอบซ่อมครบแล้ว!' : `ต้องสอบซ่อมอีก ${need - done} ครั้ง`}</div>
+      <div class="muted" style="font-size:14px">Post-test ได้ <b>${st.postBest}</b> คะแนน (เกณฑ์ ${passScore('post')}/${TOTAL('post')}) → ต้องสอบซ่อม <b>${need} ครั้ง</b>${minS ? ` · รอบที่นับต้องได้อย่างน้อย ${minS} คะแนน` : ''}</div>
+      <div class="repmeter">${dots}</div>
+      <div class="stats">
+        <div class="stat"><b>${done}/${need}</b><span>ซ่อมแล้ว (ครั้ง)</span></div>
+        <div class="stat"><b>${st.repairBest == null ? '–' : st.repairBest}</b><span>คะแนนสูงสุด</span></div>
+        <div class="stat"><b>${st.repairLast == null ? '–' : st.repairLast}</b><span>ครั้งล่าสุด</span></div>
+      </div>
+      ${open ? `<button class="btn btn-rep" data-start="repair" style="width:100%">${ok ? '🔁 ฝึกเพิ่มอีกรอบ' : `🛠️ เริ่มสอบซ่อมครั้งที่ ${done + 1}`}</button>` : `<div class="closed">🔒 ครูยังไม่เปิดสอบซ่อม</div>`}
     </div>
   </div>`;
 }
@@ -878,6 +935,7 @@ function renderHub(){
     </div>
     ${S.settings.announce ? `<div class="announce" style="margin:0 0 18px"><span style="font-size:22px">📢</span><div>${esc(S.settings.announce)}</div></div>` : ''}
     <div class="tests">${testCard('pre')}${testCard('post')}</div>
+    ${repairCard()}
     ${hasBoth ? `<div class="card compare">
       <div class="gain" style="--p:${Math.max(0, Math.min(100, gain * 2))}%"><div>${gain > 0 ? '+' : ''}${gain}%<small>พัฒนาการ</small></div></div>
       <div class="bars">
@@ -906,7 +964,8 @@ function stopCam(){
 function startTest(mode){
   beep('tap');
   const s = S.settings;
-  if (!isOn(mode === 'pre' ? s.preOpen : s.postOpen)) return toast('ครูยังไม่เปิดให้ทำชุดนี้', 'warn');
+  if (!isOn(mode === 'pre' ? s.preOpen : mode === 'post' ? s.postOpen : s.repairOpen)) return toast('ครูยังไม่เปิดให้ทำชุดนี้', 'warn');
+  if (mode === 'repair' && !repairNeed(S.status)) return toast('ไม่ต้องสอบซ่อมแล้ว 🎉', 'good');
   if (isOn(s.faceScan) && sess.get('ppc_face_' + S.me.key) !== '1') return renderFace(mode);
   beginQuiz(mode);
 }
@@ -1029,8 +1088,9 @@ function saveAtt(){ if (S.att && S.me) store.set('ppc_att_' + S.me.key, S.att); 
 function renderQuiz(){
   const A = S.att;
   document.body.classList.toggle('m-post', A.mode === 'post');
+  document.body.classList.toggle('m-repair', A.mode === 'repair');
   main(`<div class="qtop"><div class="qtop-in">
-      <span class="mode-pill ${A.mode}">${A.mode === 'pre' ? 'PRETEST' : 'POST-TEST'}</span>
+      <span class="mode-pill ${A.mode}">${MODE_TH[A.mode]}</span>
       <span class="chip">👤 ${esc(S.me.name)} · ม.${esc(S.me.cls)} เลขที่ ${esc(S.me.no)}</span>
       <div class="spacer"></div>
       <span class="chip timer">⏱ <span id="qTimer">00:00</span></span>
@@ -1059,7 +1119,7 @@ function drawQuestion(){
     <div class="qnav">
       <button class="btn btn-ghost" id="qPrev" ${pos === 0 ? 'disabled' : ''}>← ก่อนหน้า</button>
       <div class="spacer"></div>
-      ${pos < A.order.length - 1 ? `<button class="btn ${A.mode === 'pre' ? 'btn-pre' : 'btn-post'}" id="qNext">ถัดไป →</button>` : ''}
+      ${pos < A.order.length - 1 ? `<button class="btn ${MODE_BTN[A.mode]}" id="qNext">ถัดไป →</button>` : ''}
       <button class="btn btn-dark" id="qSubmit">✅ ส่งคำตอบ</button>
     </div>
   </div>`;
@@ -1086,7 +1146,7 @@ function navHtml(A, pos){
   return `<div class="qnav">
       <button class="btn btn-ghost" id="qPrev" ${pos === 0 ? 'disabled' : ''}>← ก่อนหน้า</button>
       <div class="spacer"></div>
-      ${pos < A.order.length - 1 ? `<button class="btn ${A.mode === 'pre' ? 'btn-pre' : 'btn-post'}" id="qNext">ถัดไป →</button>` : ''}
+      ${pos < A.order.length - 1 ? `<button class="btn ${MODE_BTN[A.mode]}" id="qNext">ถัดไป →</button>` : ''}
       <button class="btn btn-dark" id="qSubmit">✅ ส่งคำตอบ</button>
     </div>`;
 }
@@ -1229,7 +1289,7 @@ async function finishQuiz(){
   const ansStr = A.order.map(i => { const Q = ALL[i]; return Q.w ? Q.id + ':' + (isCorrect(Q, A.answers[i]) ? '✓' : '✗') + '[' + ansText(Q, A.answers[i]).slice(0, 40) + ']' : (i + 1) + ':' + (A.answers[i] == null ? '-' : 'ABCD'[A.answers[i]]); }).join(',');
   const payload = {key:S.me.key, deviceId:S.deviceId, mode:A.mode, attemptId:A.id, score:sc.score, total:sc.total,
     easy:sc.by.easy[0], medium:sc.by.medium[0], hard:sc.by.hard[0], durationSec:dur, violations:A.violations, answers:ansStr};
-  const res = {mode:A.mode, score:sc.score, total:sc.total, by:sc.by, w:sc.w, wt:sc.wt, dur, answers:A.answers, order:A.order, perm:A.perm, when:nowTh(), attempt:null, violations:A.violations};
+  const res = {mode:A.mode, need:A.mode === 'repair' ? repairNeed(S.status) : 0, score:sc.score, total:sc.total, by:sc.by, w:sc.w, wt:sc.wt, dur, answers:A.answers, order:A.order, perm:A.perm, when:nowTh(), attempt:null, violations:A.violations};
   main(`<div style="text-align:center;padding:80px 0"><div class="h1 grad">กำลังส่งคำตอบ…</div><p class="muted" style="margin-top:8px">อย่าเพิ่งปิดหน้านี้นะ</p></div>`);
   const r = await api('submit', payload);
   store.del('ppc_att_' + S.me.key);
@@ -1237,16 +1297,24 @@ async function finishQuiz(){
   if (r.ok){
     S.status = r.status || S.status;
     res.attempt = r.attempt || (S.status && S.status[A.mode + 'Attempts']) || null;
+    if (A.mode === 'repair') res.counted = r.counted !== false;
   } else {
     if (r.error === 'device_locked') { const pl = store.get('ppc_pending_list', []); pl.push(payload); store.set('ppc_pending_list', pl); return renderLocked(S.me.key, 'locked'); }
     const pend = store.get('ppc_pending_list', []); pend.push(payload); store.set('ppc_pending_list', pend);
     toast('ส่งคะแนนไม่สำเร็จ ระบบจะส่งให้อัตโนมัติเมื่อเน็ตกลับมา', 'warn');
     // update locally so hub reflects it
     const st = S.status || (S.status = {});
-    st[A.mode + 'Attempts'] = (st[A.mode + 'Attempts'] || 0) + 1;
-    st[A.mode + 'Last'] = sc.score;
-    st[A.mode + 'Best'] = Math.max(st[A.mode + 'Best'] == null ? -1 : st[A.mode + 'Best'], sc.score);
-    res.attempt = st[A.mode + 'Attempts'];
+    if (A.mode === 'repair'){
+      res.counted = sc.score >= (Number(S.settings.repairMinScore) || 0);
+      if (res.counted) st.repairCount = (st.repairCount || 0) + 1;
+      st.repairLast = sc.score; st.repairBest = Math.max(st.repairBest == null ? -1 : st.repairBest, sc.score);
+      res.attempt = st.repairCount;
+    } else {
+      st[A.mode + 'Attempts'] = (st[A.mode + 'Attempts'] || 0) + 1;
+      st[A.mode + 'Last'] = sc.score;
+      st[A.mode + 'Best'] = Math.max(st[A.mode + 'Best'] == null ? -1 : st[A.mode + 'Best'], sc.score);
+      res.attempt = st[A.mode + 'Attempts'];
+    }
   }
   S.lastResult = res;
   renderResult(res);
@@ -1276,19 +1344,25 @@ function gradeOf(p){
 }
 function renderResult(res){
   setState('result');
-  document.body.classList.remove('m-post');
+  document.body.classList.remove('m-post', 'm-repair');
   const pct = Math.round(res.score / res.total * 100), g = gradeOf(pct);
   const showRev = isOn(res.mode === 'pre' ? S.settings.showReviewPre : S.settings.showReviewPost);
+  const passed = res.mode !== 'repair' && res.score >= passScore(res.mode);
+  const needNow = repairNeed(S.status);
+  let banner = '';
+  if (res.mode !== 'repair') banner = passed ? `<div class="passbadge ok" style="margin-top:12px">✅ ผ่านเกณฑ์ ${passScore(res.mode)}/${res.total}</div>` : `<div class="passbadge no" style="margin-top:12px">❗ ยังไม่ผ่านเกณฑ์ ${passScore(res.mode)}/${res.total}${res.mode === 'post' ? ` · ต้องสอบซ่อม ${needNow} ครั้ง` : ''}</div>`;
+  if (res.mode === 'repair') banner = res.counted === false ? `<div class="passbadge no" style="margin-top:12px">⚠️ รอบนี้ไม่นับ (ต้องได้อย่างน้อย ${Number(S.settings.repairMinScore) || 0} คะแนน)</div>` : `<div class="passbadge ok" style="margin-top:12px">🛠️ นับเป็นสอบซ่อมครั้งที่ ${(S.status && S.status.repairCount) || res.attempt} / ${res.need}${((S.status && S.status.repairCount) || 0) >= res.need ? ' · ครบแล้ว 🎉' : ''}</div>`;
   const C = 2 * Math.PI * 88;
   const lvBar = (lv, col) => { const [a, t] = res.by[lv]; return `<div class="lvrow"><span>${LV_TH[lv]}</span><div class="bar"><i style="background:${col}" data-w="${a / t * 100}"></i></div><span>${a}/${t}</span></div>`; };
   main(`<div class="res-grid">
     <div class="card res-hero">
-      <span class="mode-pill ${res.mode}">${res.mode === 'pre' ? 'PRETEST' : 'POST-TEST'} · ครั้งที่ ${res.attempt || '-'}</span>
-      <div class="ring"><svg viewBox="0 0 200 200"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">${res.mode === 'pre' ? '<stop offset="0" stop-color="#FF6B6B"/><stop offset="1" stop-color="#FFC93C"/>' : '<stop offset="0" stop-color="#7C5CFF"/><stop offset="1" stop-color="#12B8A6"/>'}</linearGradient></defs>
+      <span class="mode-pill ${res.mode}">${MODE_TH[res.mode]} · ครั้งที่ ${res.attempt || '-'}</span>
+      <div class="ring"><svg viewBox="0 0 200 200"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">${res.mode === 'pre' ? '<stop offset="0" stop-color="#FF6B6B"/><stop offset="1" stop-color="#FFC93C"/>' : res.mode === 'repair' ? '<stop offset="0" stop-color="#FF4D8D"/><stop offset="1" stop-color="#FFB347"/>' : '<stop offset="0" stop-color="#7C5CFF"/><stop offset="1" stop-color="#12B8A6"/>'}</linearGradient></defs>
         <circle cx="100" cy="100" r="88" fill="none" stroke="#F1ECF7" stroke-width="16"/>
         <circle id="ringArc" cx="100" cy="100" r="88" fill="none" stroke="url(#rg)" stroke-width="16" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}" style="transition:stroke-dashoffset 1.4s cubic-bezier(.2,.8,.2,1)"/></svg>
         <div class="center"><div><b id="scoreNum">0</b><span> / ${res.total}</span><div style="font-weight:900;color:var(--sub)">${pct}%</div></div></div></div>
       <div class="badge-big" style="background:${g.c}">${g.t}</div>
+      ${banner ? `<div>${banner}</div>` : ''}
       <div style="margin-top:14px;font-weight:800">${esc(S.me.name)}</div>
       <div class="muted">ม.${esc(S.me.cls)} · เลขที่ ${esc(S.me.no)} · ⏱ ${fmtTime(res.dur)} · ${esc(res.when)}</div>
     </div>
@@ -1318,7 +1392,8 @@ function renderResult(res){
   beep(pct >= 60 ? 'done' : 'ok');
   if (pct >= 75) confetti();
   $('#btnSave').onclick = () => saveImage(res);
-  $('#btnAgain').onclick = () => startTest(res.mode);
+  $('#btnAgain').onclick = () => (res.mode === 'post' && repairNeed(S.status) && isOn(S.settings.repairOpen)) ? startTest('repair') : startTest(res.mode);
+  if (res.mode === 'post' && repairNeed(S.status) && isOn(S.settings.repairOpen)) { $('#btnAgain').textContent = '🛠️ ไปสอบซ่อม'; $('#btnAgain').className = 'btn btn-rep'; }
   $('#btnHome').onclick = renderHub;
   const rv = $('#btnRev'); if (rv) rv.onclick = () => { renderReview(res); rv.remove(); };
 }
@@ -1344,20 +1419,20 @@ function rr(ctx, x, y, w, h, r){ ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcT
 function loadImg(src){ return new Promise(res => { if (!src) return res(null); const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; }); }
 async function buildCard(res){
   const W = 1080, H = 1350, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
-  const c = cv.getContext('2d'), pre = res.mode === 'pre';
+  const c = cv.getContext('2d'), pre = res.mode === 'pre', rep = res.mode === 'repair';
   const pct = Math.round(res.score / res.total * 100), g = gradeOf(pct);
   // background
   const bg = c.createLinearGradient(0, 0, W, H); bg.addColorStop(0, '#FFF8F1'); bg.addColorStop(.5, '#FFF0E6'); bg.addColorStop(1, '#F1ECFF'); c.fillStyle = bg; c.fillRect(0, 0, W, H);
   [[160, 120, 260, '#FFD3B6'], [960, 220, 240, '#D9CCFF'], [880, 1220, 300, '#C6F1EA'], [120, 1180, 200, '#FFE7A3']].forEach(([x, y, r, col]) => { const gr = c.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, col); gr.addColorStop(1, 'rgba(255,255,255,0)'); c.fillStyle = gr; c.fillRect(0, 0, W, H); });
   // header band
   const hb = c.createLinearGradient(0, 0, W, 0);
-  if (pre){ hb.addColorStop(0, '#FF6B6B'); hb.addColorStop(.55, '#FF9F43'); hb.addColorStop(1, '#FFC93C'); } else { hb.addColorStop(0, '#7C5CFF'); hb.addColorStop(.6, '#38BDF8'); hb.addColorStop(1, '#12B8A6'); }
+  if (rep){ hb.addColorStop(0, '#FF4D8D'); hb.addColorStop(.5, '#FF7EB6'); hb.addColorStop(1, '#FFB347'); } else if (pre){ hb.addColorStop(0, '#FF6B6B'); hb.addColorStop(.55, '#FF9F43'); hb.addColorStop(1, '#FFC93C'); } else { hb.addColorStop(0, '#7C5CFF'); hb.addColorStop(.6, '#38BDF8'); hb.addColorStop(1, '#12B8A6'); }
   rr(c, 50, 50, W - 100, 230, 44); c.fillStyle = hb; c.fill();
   c.fillStyle = 'rgba(255,255,255,.18)'; c.beginPath(); c.arc(W - 120, 90, 130, 0, Math.PI * 2); c.fill();
   c.fillStyle = '#fff'; c.textBaseline = 'alphabetic';
   c.font = `800 30px ${FONT}`; c.fillText('PRESENT PERFECT CONTINUOUS · ม.6', 96, 120);
-  c.font = `900 84px ${FONT}`; c.fillText(pre ? 'PRETEST' : 'POST-TEST', 96, 210);
-  c.font = `700 28px ${FONT}`; c.fillText('ครั้งที่ ' + (res.attempt || '-') + ' · ' + res.when, 96, 255);
+  c.font = `900 84px ${FONT}`; c.fillText(MODE_TH[res.mode], 96, 210);
+  c.font = `700 28px ${FONT}`; c.fillText((rep ? 'สอบซ่อมครั้งที่ ' + (res.attempt || '-') + '/' + res.need : 'ครั้งที่ ' + (res.attempt || '-')) + ' · ' + res.when, 96, 255);
   // student card
   rr(c, 50, 310, W - 100, 190, 36); c.fillStyle = '#fff'; c.fill();
   const face = await loadImg(store.get('ppc_face_img_' + S.me.key, ''));
@@ -1390,7 +1465,7 @@ async function buildCard(res){
     if (a > 0){ rr(c, 560, y + 14, Math.max(22, 450 * a / t), 22, 11); c.fillStyle = col; c.fill(); }
   });
   // info tiles
-  const tiles = [['⏱ เวลาที่ใช้', fmtTime(res.dur)], ['✍️ เขียนตอบ', (res.w || 0) + '/' + (res.wt || 0)], ['🛡️ ยืนยันตัวตน', sess.get('ppc_face_' + S.me.key) === '1' ? 'ผ่าน' : '-']];
+  const tiles = [res.mode !== 'repair' ? ['🎯 เกณฑ์ ' + passScore(res.mode) + '/' + res.total, res.score >= passScore(res.mode) ? 'ผ่าน ✅' : 'ไม่ผ่าน'] : ['🛠️ ซ่อมแล้ว', ((S.status && S.status.repairCount) || 0) + '/' + res.need], ['✍️ เขียนตอบ', (res.w || 0) + '/' + (res.wt || 0)], ['🛡️ ยืนยันตัวตน', sess.get('ppc_face_' + S.me.key) === '1' ? 'ผ่าน' : '-']];
   tiles.forEach(([k, v], i) => {
     const x = 50 + i * 333, y = 1010;
     rr(c, x, y, 313, 140, 30); c.fillStyle = '#fff'; c.fill();
@@ -1408,7 +1483,7 @@ async function saveImage(res){
   try{
     const cv = await buildCard(res);
     const url = cv.toDataURL('image/png');
-    const fname = `PPC_${res.mode === 'pre' ? 'Pretest' : 'Posttest'}_${S.me.cls.replace('/', '-')}_${S.me.no}_${res.score}.png`;
+    const fname = `PPC_${{pre:'Pretest', post:'Posttest', repair:'Repair'}[res.mode]}_${S.me.cls.replace('/', '-')}_${S.me.no}_${res.score}.png`;
     const a = document.createElement('a'); a.href = url; a.download = fname; document.body.appendChild(a); a.click(); a.remove();
     modal(`<h3>📸 บันทึกรูปเรียบร้อย</h3><p class="muted" style="margin-bottom:12px">ถ้าไฟล์ไม่ดาวน์โหลด (iPad) ให้ <b>กดค้างที่รูป</b> → "บันทึกไปยังรูปภาพ" แล้วส่งให้ครู</p>
       <img class="imgprev" src="${url}" alt="ผลสอบ"><div class="acts"><button class="btn btn-pre" data-close>เรียบร้อย</button></div>`);
@@ -1462,9 +1537,9 @@ function startPing(){
     }
     if (r.setver) S.setver = r.setver;
     if (r.settings){
-      const before = JSON.stringify([S.settings.preOpen, S.settings.postOpen, S.settings.announce, S.settings.heroImg, S.settings.preImg, S.settings.postImg]);
+      const before = JSON.stringify([S.settings.preOpen, S.settings.postOpen, S.settings.announce, S.settings.heroImg, S.settings.preImg, S.settings.postImg, S.settings.passPre, S.settings.passPost, S.settings.repairOpen, S.settings.repairExtra, S.settings.repairMinScore]);
       applySettings(r.settings);
-      const after = JSON.stringify([S.settings.preOpen, S.settings.postOpen, S.settings.announce, S.settings.heroImg, S.settings.preImg, S.settings.postImg]);
+      const after = JSON.stringify([S.settings.preOpen, S.settings.postOpen, S.settings.announce, S.settings.heroImg, S.settings.preImg, S.settings.postImg, S.settings.passPre, S.settings.passPost, S.settings.repairOpen, S.settings.repairExtra, S.settings.repairMinScore]);
       if (before !== after && curState === 'hub' && !$('.modal-bg')) renderHub();
     }
     (r.msgs || []).forEach(m => {
@@ -1631,7 +1706,7 @@ const Admin = (() => {
     const L = fCls === 'all' ? list : list.filter(x => x.cls === fCls);
     const pre = L.filter(x => x.st && x.st.preBest != null).map(x => x.st.preBest / TOTAL('pre') * 100), post = L.filter(x => x.st && x.st.postBest != null).map(x => x.st.postBest / TOTAL('post') * 100);
     const ap = avg(pre), aq = avg(post);
-    const k = [['🟢 ออนไลน์', L.filter(x => x.online).length + ''], ['👥 เข้าระบบแล้ว', L.filter(x => x.joined).length + '/' + L.length], ['📘 เฉลี่ย Pretest', ap == null ? '–' : ap.toFixed(0) + '%'], ['📗 เฉลี่ย Post-test', aq == null ? '–' : aq.toFixed(0) + '%'], ['📈 พัฒนาการ', ap == null || aq == null ? '–' : ((aq - ap) > 0 ? '+' : '') + (aq - ap).toFixed(0) + '%']];
+    const k = [['🟢 ออนไลน์', L.filter(x => x.online).length + ''], ['👥 เข้าระบบแล้ว', L.filter(x => x.joined).length + '/' + L.length], ['📘 เฉลี่ย Pretest', ap == null ? '–' : ap.toFixed(0) + '%'], ['📗 เฉลี่ย Post-test', aq == null ? '–' : aq.toFixed(0) + '%'], ['📈 พัฒนาการ', ap == null || aq == null ? '–' : ((aq - ap) > 0 ? '+' : '') + (aq - ap).toFixed(0) + '%'], ['🛠️ ยังต้องซ่อม', L.filter(x => x.st && repairNeed(x.st) > (x.st.repairCount || 0)).length + ' คน']];
     $('#kpis').innerHTML = k.map(([a, b]) => `<div class="kpi"><span>${a}</span><b>${b}</b></div>`).join('');
   }
   function drawBody(){
@@ -1641,7 +1716,7 @@ const Admin = (() => {
         <input class="input" id="fq" placeholder="🔎 ค้นหาชื่อ / เลขที่" value="${esc(fq)}">
         <div class="spacer"></div>
         <button class="btn btn-ghost btn-sm" id="rsCls">♻️ รีเซ็ตคะแนนทั้งห้อง</button></div>
-        <div class="tbl-wrap"><table><thead><tr><th>เลขที่</th><th>ชื่อ-นามสกุล</th><th>ชั้น</th><th>สถานะ</th><th>Pretest<br><small>สูงสุด · ล่าสุด · ครั้ง</small></th><th>Post-test<br><small>สูงสุด · ล่าสุด · ครั้ง</small></th><th>พัฒนาการ<br><small>(% Post − % Pre)</small></th><th>⚠️ ออกจอ</th><th>เครื่อง</th><th>จัดการ</th></tr></thead><tbody id="tb"></tbody></table></div>`;
+        <div class="tbl-wrap"><table><thead><tr><th>เลขที่</th><th>ชื่อ-นามสกุล</th><th>ชั้น</th><th>สถานะ</th><th>Pretest<br><small>สูงสุด · ล่าสุด · ครั้ง</small></th><th>Post-test<br><small>สูงสุด · ล่าสุด · ครั้ง</small></th><th>พัฒนาการ<br><small>(% Post − % Pre)</small></th><th>🛠️ สอบซ่อม<br><small>ทำแล้ว / ต้องทำ</small></th><th>⚠️ ออกจอ</th><th>เครื่อง</th><th>จัดการ</th></tr></thead><tbody id="tb"></tbody></table></div>`;
       $('#fCls').onchange = e => { fCls = e.target.value; drawKpis(); drawTable(); };
       $('#fq').oninput = e => { fq = e.target.value; drawTable(); };
       $('#rsCls').onclick = () => resetDlg(null);
@@ -1653,7 +1728,7 @@ const Admin = (() => {
     if (!x.joined) return '<span class="st">ยังไม่เข้า</span>';
     if (!x.online) return '<span class="st">ออฟไลน์</span>';
     const p = x.presence || {};
-    if (p.state === 'quiz') return `<span class="st quiz"><i></i>${p.mode === 'post' ? 'Post' : 'Pre'} ข้อ ${p.q}/${TOTAL(p.mode === 'post' ? 'post' : 'pre')} (ตอบ ${p.answered})</span>`;
+    if (p.state === 'quiz') return `<span class="st quiz"><i></i>${{pre:'Pre', post:'Post', repair:'ซ่อม'}[p.mode] || 'Pre'} ข้อ ${p.q}/${TOTAL(p.mode || 'pre')} (ตอบ ${p.answered})</span>`;
     const m = {hub:'หน้าหลัก', face:'กำลังสแกนหน้า', result:'ดูผลคะแนน'};
     return `<span class="st on"><i></i>${m[p.state] || 'ออนไลน์'}</span>`;
   }
@@ -1661,15 +1736,16 @@ const Admin = (() => {
     const tb = $('#tb'); if (!tb) return;
     const q = fq.trim().toLowerCase();
     const L = list.filter(x => (fCls === 'all' || x.cls === fCls) && (!q || x.name.toLowerCase().includes(q) || String(x.no) === q));
-    if (!L.length){ tb.innerHTML = '<tr><td colspan="10" style="text-align:center;padding:30px" class="muted">ไม่พบรายชื่อ — ใส่รายชื่อในชีท Students ได้เลย</td></tr>'; return; }
+    if (!L.length){ tb.innerHTML = '<tr><td colspan="11" style="text-align:center;padding:30px" class="muted">ไม่พบรายชื่อ — ใส่รายชื่อในชีท Students ได้เลย</td></tr>'; return; }
     tb.innerHTML = L.map(x => {
       const s = x.st || {};
-      const sc = m => s[m + 'Attempts'] ? `<span class="sc">${s[m + 'Best']}<small>/${TOTAL(m)} · ${s[m + 'Last']} · ×${s[m + 'Attempts']}</small></span>` : '<span class="muted">–</span>';
+      const sc = m => s[m + 'Attempts'] ? `<span class="sc" style="color:${s[m + 'Best'] >= passScore(m) ? '#0C8A7A' : '#D2335F'}">${s[m + 'Best'] >= passScore(m) ? '✅' : '❗'}${s[m + 'Best']}<small>/${TOTAL(m)} · ${s[m + 'Last']} · ×${s[m + 'Attempts']}</small></span>` : '<span class="muted">–</span>';
       const g = s.preBest != null && s.postBest != null ? Math.round(s.postBest / TOTAL('post') * 100 - s.preBest / TOTAL('pre') * 100) : null;
       return `<tr>
         <td><b>${esc(x.no)}</b></td><td><b>${esc(x.name)}</b>${x.lastMsg ? `<div class="muted" style="font-size:12px;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${x.lastMsg.from === 'student' ? '🧑‍🎓 ' : '👩‍🏫 '}${esc(x.lastMsg.text)}</div>` : ''}</td>
         <td>ม.${esc(x.cls)}</td><td>${stText(x)}</td><td>${sc('pre')}</td><td>${sc('post')}</td>
         <td>${g == null ? '<span class="muted">–</span>' : `<b style="color:${g > 0 ? '#0C8A7A' : g < 0 ? '#D23A5A' : 'inherit'}">${g > 0 ? '+' : ''}${g}%</b>`}</td>
+        <td>${(() => { const need = repairNeed(s); if (s.postBest == null) return '<span class="muted">–</span>'; if (!need) return '<span class="passbadge ok">ผ่าน</span>'; const d = s.repairCount || 0; return d >= need ? `<span class="passbadge ok">ซ่อมครบ ${d}/${need}</span>` : `<span class="passbadge no">${d}/${need}</span>`; })()}</td>
         <td>${s.violations ? `<b style="color:#D23A5A">${s.violations}</b>` : '0'}</td>
         <td>${x.joined ? (s.deviceBound ? `<button class="ib" data-unlock="${esc(x.key)}" title="ปลดล็อกเครื่อง">🔒 ปลดล็อก</button>` : '<span class="muted">ว่าง</span>') : '–'}</td>
         <td style="white-space:nowrap">${x.joined ? `<button class="ib" data-chat="${esc(x.key)}">💬${x.unread ? `<span class="badge">${x.unread}</span>` : ''}</button> <button class="ib" data-face="${esc(x.key)}" title="รูปสแกนหน้า">📷</button> <button class="ib" data-reset="${esc(x.key)}" title="รีเซ็ต">♻️</button>` : ''}</td></tr>`;
@@ -1690,7 +1766,7 @@ const Admin = (() => {
     const x = key ? list.find(y => y.key === key) : null;
     const target = x ? x.name : (fCls === 'all' ? 'ทุกห้อง' : 'ม.' + fCls);
     const m = modal(`<h3>♻️ รีเซ็ตคะแนน · ${esc(target)}</h3><p class="muted">เลือกสิ่งที่ต้องการรีเซ็ต (ประวัติในชีท Results ยังอยู่ครบ)</p>
-      <div class="acts" style="justify-content:stretch"><button class="btn btn-pre" data-s="pre" style="flex:1">Pretest</button><button class="btn btn-post" data-s="post" style="flex:1">Post-test</button><button class="btn btn-dark" data-s="all" style="flex:1">ทั้งหมด</button></div>
+      <div class="acts" style="justify-content:stretch"><button class="btn btn-pre" data-s="pre" style="flex:1">Pretest</button><button class="btn btn-post" data-s="post" style="flex:1">Post-test</button><button class="btn btn-rep" data-s="repair" style="flex:1">สอบซ่อม</button><button class="btn btn-dark" data-s="all" style="flex:1">ทั้งหมด</button></div>
       <div class="acts"><button class="btn btn-ghost" data-close>ยกเลิก</button></div>`);
     m.querySelectorAll('[data-s]').forEach(b => b.onclick = async () => {
       m.remove();
@@ -1721,23 +1797,23 @@ const Admin = (() => {
     b.innerHTML = '<div class="muted" style="padding:20px">กำลังโหลด…</div>';
     const r = await api('adminSettings', {pin});
     if (!r.ok){ b.innerHTML = '<div class="muted">โหลดไม่สำเร็จ</div>'; return; }
-    const BOOL = ['faceScan','antiCheat','deviceOneUser','preOpen','postOpen','showReviewPre','showReviewPost'];
+    const BOOL = ['faceScan','antiCheat','deviceOneUser','preOpen','postOpen','repairOpen','showReviewPre','showReviewPost'];
     const IMG = ['heroImg','logoImg','preImg','postImg','bgImg'];
     const LABEL = {pin:'🔑 PIN หน้าครู', faceCode:'📸 รหัสแทนสแกนหน้า', faceScan:'📸 สแกนหน้าก่อนสอบ', antiCheat:'🛡️ นับการออกจากหน้าจอ', deviceOneUser:'💻 1 เครื่อง = 1 คน', preOpen:'📘 เปิด Pretest', postOpen:'📗 เปิด Post-test',
-      showReviewPre:'📖 เฉลยหลัง Pretest', showReviewPost:'📖 เฉลยหลัง Post-test', announce:'📢 ประกาศหน้าแรก', heroImg:'🖼️ รูปแบนเนอร์', logoImg:'🖼️ โลโก้', preImg:'🖼️ รูปการ์ด Pretest', postImg:'🖼️ รูปการ์ด Post-test', bgImg:'🖼️ รูปพื้นหลัง'};
+      passPre:'🎯 เกณฑ์ผ่าน Pretest (เต็ม 35)', passPost:'🎯 เกณฑ์ผ่าน Post-test (เต็ม 40)', repairOpen:'🛠️ เปิดการ์ดสอบซ่อม', repairExtra:'🛠️ บวกเพิ่มจำนวนครั้งซ่อม', repairMinScore:'🛠️ คะแนนขั้นต่ำที่นับเป็นรอบซ่อม', showReviewPre:'📖 เฉลยหลัง Pretest', showReviewPost:'📖 เฉลยหลัง Post-test', announce:'📢 ประกาศหน้าแรก', heroImg:'🖼️ รูปแบนเนอร์', logoImg:'🖼️ โลโก้', preImg:'🖼️ รูปการ์ด Pretest', postImg:'🖼️ รูปการ์ด Post-test', bgImg:'🖼️ รูปพื้นหลัง'};
     b.innerHTML = `<div class="card" style="padding:16px 18px;margin-bottom:14px;font-weight:700">🖼️ ใส่รูป: อัปโหลดที่ <b>postimages.org</b> → คัดลอก "Direct link" (ลงท้าย .jpg/.png) มาวาง · บันทึกอัตโนมัติเมื่อกดออกจากช่อง · นักเรียนเห็นภายใน ~1 นาที</div>
       <div class="set-grid">${r.list.map(s => {
         const k = s.key;
         if (BOOL.includes(k)) return `<div class="set-item"><div class="k">${LABEL[k] || esc(k)}</div><div class="n">${esc(s.note)}</div><div class="switch" data-k="${k}"><button class="${isOn(s.value) ? 'on' : ''}" data-v="TRUE">เปิด</button><button class="${!isOn(s.value) ? 'on off' : ''}" data-v="FALSE">ปิด</button></div></div>`;
         return `<div class="set-item"><div class="k">${LABEL[k] || esc(k)}</div><div class="n">${esc(s.note)}</div>
-          <input class="input" data-in="${k}" value="${esc(s.value)}" ${k === 'pin' || k === 'faceCode' ? 'inputmode="numeric"' : ''} placeholder="${IMG.includes(k) ? 'https://i.postimg.cc/...jpg' : ''}">
+          <input class="input" data-in="${k}" value="${esc(s.value)}" ${['pin','faceCode','passPre','passPost','repairExtra','repairMinScore'].includes(k) ? 'inputmode="numeric"' : ''} placeholder="${IMG.includes(k) ? 'https://i.postimg.cc/...jpg' : ''}">
           ${IMG.includes(k) ? `<img data-prev="${k}" alt="" src="${esc(s.value)}" ${s.value ? '' : 'class="hidden"'} onerror="this.classList.add('hidden')">` : ''}</div>`;
       }).join('')}</div>`;
     b.querySelectorAll('.switch').forEach(sw => sw.querySelectorAll('button').forEach(btn => btn.onclick = async () => {
       const prev = sw.innerHTML;
       sw.querySelectorAll('button').forEach(x => { x.className = x === btn ? ('on' + (btn.dataset.v === 'FALSE' ? ' off' : '')) : ''; });
       const res = await api('adminSetSetting', {pin, k:sw.dataset.k, v:btn.dataset.v});
-      if (!res.ok){ sw.innerHTML = prev; toast('บันทึกไม่สำเร็จ', 'warn'); drawSettings(); } else toast('บันทึกแล้ว ✅', 'good');
+      if (!res.ok){ sw.innerHTML = prev; toast('บันทึกไม่สำเร็จ', 'warn'); drawSettings(); } else { applySettings({[sw.dataset.k]:btn.dataset.v}); toast('บันทึกแล้ว ✅', 'good'); }
     }));
     b.querySelectorAll('[data-in]').forEach(inp => {
       inp.dataset.orig = inp.value;
@@ -1749,7 +1825,7 @@ const Admin = (() => {
           inp.dataset.orig = v; toast('บันทึกแล้ว ✅', 'good');
           const pv = b.querySelector(`[data-prev="${k}"]`); if (pv){ pv.classList.toggle('hidden', !v); if (v) pv.src = v; }
           if (k === 'pin'){ pin = v; sess.set('ppc_admin_pin', v); }
-          if (k === 'logoImg' || k === 'bgImg') applySettings({[k]:v});
+          applySettings({[k]:v});
         } else toast(res.error === 'pin_format' ? 'PIN ต้องเป็นตัวเลข 4–8 หลัก' : 'บันทึกไม่สำเร็จ', 'warn');
       };
       inp.onchange = save; inp.onkeydown = e => { if (e.key === 'Enter') inp.blur(); };
